@@ -1,0 +1,15 @@
+225  [main] INFO  com.service.UserService – Save user User{
+	id=null, 
+	firstName='Damian', 
+	lastName='Kerk'
+}
+411  [main] INFO  com.service.UserService – Delete user by id = 1
+421  [main] INFO  com.service.UserService – Find all users by last name = Kerk
+441  [main] INFO  com.service.UserService – Update user User{
+	id=1, 
+	firstName='Damian', 
+	lastName='Kerk'
+} by id = 1
+449  [main] INFO  com.service.UserService – Read user by id = 1
+455  [main] INFO  com.service.UserService – Find all users by first name = Damian
+459  [main] INFO  com.service.UserService – Read all users

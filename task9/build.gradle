@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+application{
+    mainClass = 'main.java.Main'
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+def path = projectDir
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.example.Main'
+    }
+}
+
+task copyJarToBin(type: Copy) {
+    from jar // shortcut for createJar.outputs.files
+    into path
+}
+
+task createImage(type: Exec) {
+    createImage.dependsOn copyJarToBin
+    workingDir "$path"
+    commandLine "cmd","/c", 'docker', 'build', '.', '--tag', 'grdl_task'
+    ignoreExitValue true
+    finalizedBy {
+        createContainer
+    }
+}
+
+task createContainer(type: Exec){
+    createContainer.dependsOn createImage
+    workingDir "$path"
+    commandLine "cmd", "/c", 'docker', 'run', 'grdl_task'
+    ignoreExitValue true
+    doLast{
+    }
+}

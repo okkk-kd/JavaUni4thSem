@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.hibernate:hibernate-core:5.6.7.Final'
+    implementation 'org.springframework:spring-orm:5.3.17'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+    compileOnly files('C:/Users/Daniil/IdeaProjects/JavaPatternMirea/task15/HikariCP-5.0.1.jar')
+    compileOnly 'org.jetbrains:annotations:23.0.0'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework:spring-tx:5.3.17'
+    implementation 'org.postgresql:postgresql:42.3.3'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
